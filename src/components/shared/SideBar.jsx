@@ -28,7 +28,7 @@ import {
   useColorMode,
   Container
 } from '@chakra-ui/react'
-import { Component } from 'react'
+import { Component, useState } from 'react'
 import {
   FiHome,
   FiTrendingUp,
@@ -59,7 +59,7 @@ const LinkItems = [
 
 const SidebarContent = ({ onClose, ...rest }) => {
   const {toggleColorMode, colorMode,setColorMode}  = useColorMode();
-  
+
   return (
     <Box
       bg={useColorModeValue('', '#1b1b1d')}

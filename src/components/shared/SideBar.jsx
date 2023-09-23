@@ -125,28 +125,28 @@ const SidebarContent = ({ load, onClose, ...rest }) => {
 
             {/* Use childrens to insert items into items */}
 
-            <CategoryNavItem urlPath="semester/1" type={"category"} load={load} itemName={"Semester 1"}>
-              <CategoryNavItem urlPath="practical/information-technology" type={"category"} load={load} itemName={"IT Skills"} />
+            <CategoryNavItem urlPath="semester/1" type={"semester"} load={load} itemName={"Semester 1"}>
+              <CategoryNavItem urlPath="practical/information-technology" type={"subject"} load={load} itemName={"IT Skills"} />
 
-              <CategoryNavItem type={"category"} load={load} itemName={"FEEE"} />
+              <CategoryNavItem type={"subject"} load={load} itemName={"FEEE"} />
             </CategoryNavItem>
 
-            <CategoryNavItem type={"category"} load={load} itemName={"Semester 2"}>
-              <CategoryNavItem type={"category"} load={load} itemName={"Statistics And Analytics"} />
-              <CategoryNavItem type={"category"} load={load} itemName={"Communication Skills"} />
-              <CategoryNavItem type={"category"} load={load} itemName={"CAD"} />
-              <CategoryNavItem type={"category"} load={load} itemName={"Multimedia And Animation."} />
+            <CategoryNavItem type={"semester"} load={load} itemName={"Semester 2"}>
+              <CategoryNavItem type={"subject"} load={load} itemName={"Statistics And Analytics"} />
+              <CategoryNavItem type={"subject"} load={load} itemName={"Communication Skills"} />
+              <CategoryNavItem type={"subject"} load={load} itemName={"CAD"} />
+              <CategoryNavItem type={"subject"} load={load} itemName={"Multimedia And Animation."} />
             </CategoryNavItem>
 
-            <CategoryNavItem type={"category"} itemName={"Semester 3"}>
-              <CategoryNavItem type={"category"} itemName={"Statistics And Analytics"} />
-              <CategoryNavItem type={"category"} itemName={"Communication Skills"} />
-              <CategoryNavItem type={"category"} itemName={"CAD"} />
-              <CategoryNavItem type={"category"} itemName={"Multimedia And Animation."} />
+            <CategoryNavItem type={"semester"} itemName={"Semester 3"}>
+              <CategoryNavItem type={"subject"} itemName={"Statistics And Analytics"} />
+              <CategoryNavItem type={"subject"} itemName={"Communication Skills"} />
+              <CategoryNavItem type={"subject"} itemName={"CAD"} />
+              <CategoryNavItem type={"subject"} itemName={"Multimedia And Animation."} />
             </CategoryNavItem>
 
-            <CategoryNavItem urlPath={"semester/4"} load={load} type={"category"} itemName={"Semester 4"}>
-              <CategoryNavItem urlPath={"practical/data-structures-and-algorithms-with-python"} type={"category"} itemName={"DSA with Python"} />
+            <CategoryNavItem urlPath={"semester/4"} load={load} type={"semester"} itemName={"Semester 4"}>
+              <CategoryNavItem urlPath={"practical/data-structures-and-algorithms-with-python"} load={load} type={"subject"} itemName={"DSA with Python"} />
             </CategoryNavItem>
             
           </Accordion>

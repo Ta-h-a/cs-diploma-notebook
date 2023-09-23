@@ -1,15 +1,20 @@
 import { Box, Card, CardBody, CardHeader, Container, Heading, Image, Link, Skeleton, SkeletonText, Spinner, Text, VStack, Wrap, WrapItem, textDecoration, useColorModeValue } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import SidebarWithHeader from './components/shared/SideBar'
-// import CategoryPage from './components/CategoryPage';
+// import SemesterCategoryPage from './components/SemesterCategoryPage';
 import axios from 'axios';
+import SubjectPage from './components/shared/SubjectCategoryPage';
+import SemesterCategoryPage from './components/shared/SemesterCategoryPage';
+import Page from './components/shared/Page';
 
 function App() {
   const [data,setData] = useState();
   const [loadCategory, setLoadCategory] = useState(
     {
       urlPath: "",
-      isCategory: false
+      isSemester: false,
+      isSubject: false,
+      isExperiment: false
     }
   );
 
@@ -29,23 +34,43 @@ function App() {
   },[loadCategory])
 
   function loadComponent(event){
-    // if (event.target.)
     console.log(event.target);
+    const type = event.target.getAttribute("type");
     // console.log(event.target.getAttribute("urlpath"));
-    if (event.target.getAttribute("type") === "category"){
-      // setLoadCategory(true);
+    if (type === "semester"){
       setLoadCategory(
         ()=>{
           return {
             urlPath: event.target.getAttribute("urlpath"),
-            isCategory: true
+            isSemester: true
+          }
+        }
+      )
+    }else if((type === "subject")){
+      setLoadCategory(
+        ()=>{
+          return {
+            urlPath: event.target.getAttribute('urlpath'),
+            isSemester: false,
+            isSubject: true
+          }
+        }
+      )
+    }else if(type === "experiment"){
+      setLoadCategory(
+        ()=>{
+          return{
+            urlPath: event.target.getAttribute('urlpath'),
+            isSemester: false,
+            isSubject: false,
+            isExperiment: true
           }
         }
       )
     }
   }
 
-  if (!loadCategory.isCategory && data){
+  if (!loadCategory.isSemester && !loadCategory.isSubject && !loadCategory.isExperiment && data){
       return (
         <SidebarWithHeader load={loadComponent} >
           <WelcomePage />
@@ -53,66 +78,37 @@ function App() {
       )
   }
   
-  if(loadCategory.isCategory && data.practical){
+  if(loadCategory.isSemester && data.practical){
     // console.log(data);
     return (
         <SidebarWithHeader load={loadComponent} >
-          <CategoryPage />
+          {/* <SemesterCategoryPage /> */}
+          <SemesterCategoryPage 
+            title={data.title}
+            description={data.description}
+            practical={data.practical}
+            loadComponent={loadComponent}
+          />
         </SidebarWithHeader>
     )
   }
 
-  function CategoryPage(){
-    // console.log(data);
+  if(loadCategory.isSubject && data.experiments){
+    console.log(data);
     return (
-      <VStack align={'stretch'}>
-        <Container maxW={'100%'} my={3}>
-            <Heading size={'2xl'}>{data.semester}</Heading>
-        </Container>
-            <Text my={4}>
-                {data.description}
-            </Text>
-            <Wrap>
-                {data.practical.map((sub, index)=>{
-                      return (
-                      <WrapItem flexGrow={{base: '1'}}>
-                          <Link p={4} w={'100%'} key={index}
-                          href={sub.URL}
-                          _hover={
-                            {
-                              textDecoration: 'none',
-                            }
-                          }
-                          >
-                            <Card borderWidth={2} bgColor={'transparent'} key={index}
-                            transition='border-color 0.3s ease-in-out'
-                            opacity='0.8'
-                            _hover={
-                              
-                              {
-                                borderColor: 'teal',
-                                transition: 'border-color 0.3s ease-in-out',
-                                opacity: 1
-                              }
-                            } variant={'outline'} size={'md'}>
-                                <CardHeader>
-                                    <Heading>{sub.title}</Heading>
-                                </CardHeader>
-                                <CardBody>
-                                    <Text>
-                                    {sub.name}
-                                    </Text>
-                                </CardBody>
-                            </Card>
-                          </Link>
-                </WrapItem>
-                      )
-                  })}
-            </Wrap>
-      </VStack>
+      <SidebarWithHeader load={loadComponent} >
+      <SubjectPage title={data.title} loadComponent={loadComponent} description={data.description} code={data.code} experiments={data.experiments} sections={data.sections} />
+    </SidebarWithHeader>
     )
   }
 
+  if (loadCategory.isExperiment && data.explanation){
+    return(
+      <SidebarWithHeader load={loadComponent} >
+        <Page name={data.title} description={data.description} explanation={data.explanation} />
+      </SidebarWithHeader>
+    )
+  }
 
   function WelcomePage(){
     return (

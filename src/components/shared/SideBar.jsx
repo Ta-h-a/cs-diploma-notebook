@@ -57,7 +57,7 @@ const LinkItems = [
   { name: 'Settings', icon: FiSettings },
 ]
 
-const SidebarContent = ({ onClose, ...rest }) => {
+const SidebarContent = ({ load, onClose, ...rest }) => {
   const {toggleColorMode, colorMode,setColorMode}  = useColorMode();
 
   return (
@@ -102,10 +102,10 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
        
 
-      <VStack m={'2'} mr={1} gap={1} align='stretch' >
+      <VStack m={'2'} mr={0} gap={1} align='stretch' >
       {/* <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       </Link> */}
-        <Accordion defaultIndex={[0]} allowMultiple >
+        <Accordion defaultIndex={[0]} allowMultiple pr={2}>
             {/* <AccordionItem border={'none'} borderRadius={5}>
             
                 <AccordionButton p={0}>
@@ -124,16 +124,29 @@ const SidebarContent = ({ onClose, ...rest }) => {
             </AccordionItem> */}
 
             {/* Use childrens to insert items into items */}
-            <CategoryNavItem itemName={"Semester 1"}>
-              <CategoryNavItem itemName={"IT Skills"} />
-              <CategoryNavItem itemName={"FEEE"} />
+
+            <CategoryNavItem urlPath="semester/1" type={"category"} load={load} itemName={"Semester 1"}>
+              <CategoryNavItem urlPath="practical/information-technology" type={"category"} load={load} itemName={"IT Skills"} />
+
+              <CategoryNavItem type={"category"} load={load} itemName={"FEEE"} />
             </CategoryNavItem>
 
-            <CategoryNavItem itemName={"Semester 2"}>
-              <CategoryNavItem itemName={"Statistics And Analytics"} />
-              <CategoryNavItem itemName={"Communication Skills"} />
-              <CategoryNavItem itemName={"CAD"} />
-              <CategoryNavItem itemName={"Multimedia And Animation."} />
+            <CategoryNavItem type={"category"} load={load} itemName={"Semester 2"}>
+              <CategoryNavItem type={"category"} load={load} itemName={"Statistics And Analytics"} />
+              <CategoryNavItem type={"category"} load={load} itemName={"Communication Skills"} />
+              <CategoryNavItem type={"category"} load={load} itemName={"CAD"} />
+              <CategoryNavItem type={"category"} load={load} itemName={"Multimedia And Animation."} />
+            </CategoryNavItem>
+
+            <CategoryNavItem type={"category"} itemName={"Semester 3"}>
+              <CategoryNavItem type={"category"} itemName={"Statistics And Analytics"} />
+              <CategoryNavItem type={"category"} itemName={"Communication Skills"} />
+              <CategoryNavItem type={"category"} itemName={"CAD"} />
+              <CategoryNavItem type={"category"} itemName={"Multimedia And Animation."} />
+            </CategoryNavItem>
+
+            <CategoryNavItem urlPath={"semester/4"} load={load} type={"category"} itemName={"Semester 4"}>
+              <CategoryNavItem urlPath={"practical/data-structures-and-algorithms-with-python"} type={"category"} itemName={"DSA with Python"} />
             </CategoryNavItem>
             
           </Accordion>
@@ -201,13 +214,13 @@ const MobileNav = ({ onOpen, ...rest }) => {
   )
 }
 
-const SidebarWithHeader = ({children}) => {
+const SidebarWithHeader = ({children, load}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box minH="100vh" bg={useColorModeValue('gray.100', '#161617')}>
       <MobileNav onOpen={onOpen} />
-      <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+      <SidebarContent load={load} onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -222,7 +235,7 @@ const SidebarWithHeader = ({children}) => {
       <Box ml={{ base: 0, md: 72 }} pt={4} >
         {/* Content */}
         <HStack justify={'stretch'} spacing={0} textAlign={"left"}>
-          <Container maxWidth={{"base":"100%","md":'75%'}} >
+          <Container maxWidth={{"base":"100%","lg":'75%'}} >
             <VStack textAlign={"left"} alignItems={'flex-start'}>
             <Container maxW={'container.xl'} p={0}>
             {children}
@@ -232,7 +245,7 @@ const SidebarWithHeader = ({children}) => {
 
             </VStack>
           </Container>
-          <Container maxWidth={'25%'} display={{"base": "none","md":"flex"}} >
+          <Container maxWidth={'25%'} display={{"base": "none","lg":"flex"}} >
           {/* {children} */}
           </Container>
         </HStack>

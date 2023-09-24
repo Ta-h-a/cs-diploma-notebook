@@ -235,7 +235,7 @@ const SidebarWithHeader = ({children, load}) => {
         onOverlayClick={onClose}
         size="xs">
         <DrawerContent>
-          <SidebarContent onClose={onClose} />
+          <SidebarContent load={load} onClose={onClose} />
         </DrawerContent>
       </Drawer>
       <Box ml={{ base: 0, md: 72 }} pt={4} >

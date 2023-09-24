@@ -2,24 +2,14 @@
 
 import {
   Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Link,
-  Image,
 } from '@chakra-ui/react'
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import CategoryNavItem from './CategoryNavItem';
 import {
   IconButton,
-  Avatar,
   Box,
   Flex,
   HStack,
   VStack,
-  Icon,
   useColorModeValue,
   Text,
   Drawer,
@@ -28,7 +18,6 @@ import {
   useColorMode,
   Container
 } from '@chakra-ui/react'
-import { Component, useState } from 'react'
 import {
   FiHome,
   FiTrendingUp,
@@ -38,27 +27,9 @@ import {
   FiMenu,
   FiSun,
   FiMoon,
-  FiArrowDown,
 } from 'react-icons/fi'
 
-import {
-  Tag,
-  TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-  TagCloseButton,
-} from '@chakra-ui/react'
-import WelcomePage from './Welcome';
 import PageNavItem from './PageNavItem';
-import FooterBar from './FooterBar';
-
-const LinkItems = [
-  { name: 'Home', icon: FiHome },
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
-]
 
 const SidebarContent = ({ load,items, onClose, ...rest }) => {
 

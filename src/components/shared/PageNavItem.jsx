@@ -1,13 +1,10 @@
 import {
     AccordionItem,
     AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
     Box,
     Link,
     useColorModeValue
   } from '@chakra-ui/react'
-  import { useState } from 'react';
   
   
   

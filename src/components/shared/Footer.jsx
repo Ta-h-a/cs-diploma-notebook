@@ -1,5 +1,4 @@
-import { Card, CardBody, CardHeader, Container, HStack, Heading, Text } from "@chakra-ui/react";
-import FooterBar from "./FooterBar";
+import { Card, CardBody, Container, HStack, Text } from "@chakra-ui/react";
 
 function Footer(){
     return (

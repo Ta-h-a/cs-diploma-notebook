@@ -1,7 +1,6 @@
-import { AspectRatio, Box, Code, Container, Heading, Link, List, ListItem, Tag, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { AspectRatio, Box, Code, Container, Heading, Link, List, ListItem, Tag, Text } from "@chakra-ui/react";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import Footer from "./Footer";
 
 const Page = ({name, description, explanation, ytLink, type, sources})=>{
     const code = `

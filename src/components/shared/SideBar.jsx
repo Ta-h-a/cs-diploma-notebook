@@ -48,6 +48,9 @@ import {
   TagRightIcon,
   TagCloseButton,
 } from '@chakra-ui/react'
+import WelcomePage from './Welcome';
+import PageNavItem from './PageNavItem';
+import FooterBar from './FooterBar';
 
 const LinkItems = [
   { name: 'Home', icon: FiHome },
@@ -57,9 +60,9 @@ const LinkItems = [
   { name: 'Settings', icon: FiSettings },
 ]
 
-const SidebarContent = ({ load, onClose, ...rest }) => {
-  const {toggleColorMode, colorMode,setColorMode}  = useColorMode();
+const SidebarContent = ({ load,items, onClose, ...rest }) => {
 
+  const {toggleColorMode, colorMode,setColorMode}  = useColorMode();
   return (
     <Box
       bg={useColorModeValue('', '#1b1b1d')}
@@ -106,24 +109,6 @@ const SidebarContent = ({ load, onClose, ...rest }) => {
       {/* <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       </Link> */}
         <Accordion defaultIndex={[0]} allowMultiple pr={2}>
-            {/* <AccordionItem border={'none'} borderRadius={5}>
-            
-                <AccordionButton p={0}>
-                  <Box as="span" flex='1' textAlign='left' p={1} >
-                    Semester 1
-                  </Box>
-                  <AccordionIcon w={10}/>
-
-
-                </AccordionButton>
-              
-              <AccordionPanel p={0} pb={4}>
-                <NavItem itemName={'IT Skills'} itemContent={['']} />
-                <NavItem itemName={'FEEE'} itemContent={['']} />
-              </AccordionPanel>
-            </AccordionItem> */}
-
-            {/* Use childrens to insert items into items */}
 
             <CategoryNavItem urlPath="semester/1" type={"semester"} load={load} itemName={"Semester 1"}>
               <CategoryNavItem urlPath="practical/information-technology" type={"subject"} load={load} itemName={"IT Skills"} />
@@ -146,7 +131,32 @@ const SidebarContent = ({ load, onClose, ...rest }) => {
             </CategoryNavItem>
 
             <CategoryNavItem urlPath={"semester/4"} load={load} type={"semester"} itemName={"Semester 4"}>
-              <CategoryNavItem urlPath={"practical/data-structures-and-algorithms-with-python"} load={load} type={"subject"} itemName={"DSA with Python"} />
+              <CategoryNavItem urlPath={"practical/data-structures-and-algorithms-with-python"} load={load} type={"subject"} itemName={"DSA with Python"}>
+                {/* {items.map((item)=>{
+                  return (
+                    <CategoryNavItem itemName={item.title}>
+                      {item.sections.map((section)=>{
+                        return (
+                          <PageNavItem itemName={section.tag} type={"experiment"} load={load} urlPath={section.URL} />
+                        )
+                      })}
+                    </CategoryNavItem>
+                  )
+                })} */}
+                {items.filter((item)=>{
+                  return item.title == "DSA with Python"
+                })[0].experiments.map((experiment)=>{
+                  return (
+                    <CategoryNavItem itemName={experiment.title}>
+                      {experiment.sections.map((section)=>{
+                        return (
+                          <PageNavItem itemName={section.tag} type={"experiment"} load={load} urlPath={section.URL} />
+                        )
+                      })}
+                    </CategoryNavItem>
+                  )
+                })}
+              </CategoryNavItem>
             </CategoryNavItem>
             
           </Accordion>
@@ -161,6 +171,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
   const {toggleColorMode, colorMode,setColorMode}  = useColorMode();
   return (
     <Flex
+    zIndex={1}
       position={'sticky'}
       top={0}
       ml={{ base: 0, md: 0 }}
@@ -220,13 +231,15 @@ const MobileNav = ({ onOpen, ...rest }) => {
   )
 }
 
-const SidebarWithHeader = ({children, load}) => {
+const SidebarWithHeader = ({children,items, load}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  console.log(items);
+
 
   return (
     <Box minH="100vh" bg={useColorModeValue('gray.100', '#161617')}>
       <MobileNav onOpen={onOpen} />
-      <SidebarContent load={load} onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+      <SidebarContent items={items} load={load} onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -235,7 +248,7 @@ const SidebarWithHeader = ({children, load}) => {
         onOverlayClick={onClose}
         size="xs">
         <DrawerContent>
-          <SidebarContent load={load} onClose={onClose} />
+          <SidebarContent items={items} load={load} onClose={onClose} />
         </DrawerContent>
       </Drawer>
       <Box ml={{ base: 0, md: 72 }} pt={4} >
@@ -256,7 +269,10 @@ const SidebarWithHeader = ({children, load}) => {
           </Container>
         </HStack>
       </Box>
+      {/* <FooterBar /> */}
+
     </Box>
+    
   )
 }
 

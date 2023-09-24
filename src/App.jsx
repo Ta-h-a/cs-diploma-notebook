@@ -10,6 +10,7 @@ import WelcomePage from './components/shared/Welcome';
 
 function App() {
   const [data,setData] = useState();
+  const [experiments, setExperiments] = useState();
   const [loadCategory, setLoadCategory] = useState(
     {
       urlPath: "",
@@ -21,7 +22,7 @@ function App() {
 
   const getData = async(url)=>{
     try{
-      const d = await axios.get(`http://localhost:3000/${url}`);
+      const d = await axios.get(`https://cs-diploma-notebook-api.vercel.app/${url}`);
       setData(d.data);
     }catch(e){
       console.log("Gadbad hai");
@@ -29,10 +30,24 @@ function App() {
     }
   }
 
+  const getNavBarData = async()=>{
+    try{
+      const d = await axios.get("https://cs-diploma-notebook-api.vercel.app/practical/all");
+      setExperiments(d.data);
+    }catch (e){
+      setExperiments([]);
+    }
+  }
+
+  useEffect(()=>{
+    getNavBarData()
+  },[])
+
   useEffect(()=>{
     // getData("");
     getData(loadCategory.urlPath)
   },[loadCategory])
+
 
   function loadComponent(event){
     console.log(event.target);
@@ -71,18 +86,18 @@ function App() {
     }
   }
 
-  if (!loadCategory.isSemester && !loadCategory.isSubject && !loadCategory.isExperiment && data){
+  if (experiments && !loadCategory.isSemester && !loadCategory.isSubject && !loadCategory.isExperiment && data){
       return (
-        <SidebarWithHeader load={loadComponent} >
+        <SidebarWithHeader items={experiments} load={loadComponent} >
           <WelcomePage title={data.title} description={data.description} />
         </SidebarWithHeader>
       )
   }
   
-  if(loadCategory.isSemester && data.practical){
+  if(experiments && loadCategory.isSemester && data.practical){
     // console.log(data);
     return (
-        <SidebarWithHeader load={loadComponent} >
+        <SidebarWithHeader items={experiments} load={loadComponent} >
           {/* <SemesterCategoryPage /> */}
           <SemesterCategoryPage 
             title={data.title}
@@ -94,34 +109,37 @@ function App() {
     )
   }
 
-  if(loadCategory.isSubject && data.experiments){
+  if(experiments && loadCategory.isSubject && data.experiments){
     console.log(data);
     return (
-      <SidebarWithHeader load={loadComponent} >
-      <SubjectPage title={data.title} loadComponent={loadComponent} description={data.description} code={data.code} experiments={data.experiments} sections={data.sections} />
-    </SidebarWithHeader>
+      <SidebarWithHeader items={experiments}  load={loadComponent} >
+        <SubjectPage title={data.title} loadComponent={loadComponent} description={data.description} code={data.code} experiments={data.experiments}  />
+      </SidebarWithHeader>
     )
   }
 
-  if (loadCategory.isExperiment && data.explanation){
+  if (experiments && loadCategory.isExperiment && data.explanation){
     return(
-      <SidebarWithHeader load={loadComponent} >
+      <SidebarWithHeader items={experiments}  load={loadComponent} >
         <Page name={data.title} description={data.description} type={data.type} explanation={data.explanation} ytLink={data.ytLink} sources={data.sources} />
       </SidebarWithHeader>
     )
   }
 
-  return (
-    <SidebarWithHeader>
-      {/* <Spinner size={'xl'} color='red.500' /> */}
-      <Skeleton borderRadius={5} ml={4} mr={4} mt={5} mb={4} height={16}/>
-      <Skeleton borderRadius={5} ml={4} mr={4} height={8}/>
-      <VStack m={4}>
-        <Skeleton borderRadius={5} w={'100%'} mt={4} height={32} />
-        <Skeleton borderRadius={5} w={'100%'} mt={4} height={32} />
-      </VStack>
+  if(experiments){
+    return (
+      <SidebarWithHeader items={experiments}>
+        {/* <Spinner size={'xl'} color='red.500' /> */}
+        <Skeleton borderRadius={5} ml={4} mr={4} mt={5} mb={4} height={16}/>
+        <Skeleton borderRadius={5} ml={4} mr={4} height={8}/>
+        <VStack m={4}>
+          <Skeleton borderRadius={5} w={'100%'} mt={4} height={32} />
+          <Skeleton borderRadius={5} w={'100%'} mt={4} height={32} />
+        </VStack>
     </SidebarWithHeader>
-  )
+    )
+
+  }
 }
 
 export default App

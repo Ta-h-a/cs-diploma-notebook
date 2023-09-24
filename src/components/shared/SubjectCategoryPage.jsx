@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import Footer from "./Footer";
 
-const SubjectPage = ({ title,description, code, experiments, sections, loadComponent }) => {
+const SubjectPage = ({ title,description, code, experiments, loadComponent }) => {
   return (
     <VStack align={"stretch"}>
         <Container maxW={"100%"} my={3}>

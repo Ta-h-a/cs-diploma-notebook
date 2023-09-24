@@ -35,6 +35,7 @@ const SidebarContent = ({ load,items, onClose, ...rest }) => {
       w={{ base: 'full', md: 72}}
       pos="fixed"
       h="full"
+      overflowY={'auto'}
       {...rest}>
       
       {/* 
@@ -72,7 +73,7 @@ const SidebarContent = ({ load,items, onClose, ...rest }) => {
       <VStack m={'2'} mr={0} gap={1} align='stretch' >
       {/* <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       </Link> */}
-        <Accordion defaultIndex={[0]} allowMultiple pr={2}>
+        <Accordion mb={50} defaultIndex={[0]} allowMultiple pr={2}>
 
             <CategoryNavItem urlPath="semester/1" type={"semester"} load={load} itemName={"Semester 1"}>
               <CategoryNavItem urlPath="practical/information-technology" type={"subject"} load={load} itemName={"IT Skills"} />

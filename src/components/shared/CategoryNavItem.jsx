@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 
 const NavItem = ({itemName,children, load, type, urlPath})=>{
-  const colorValue = useColorModeValue("cyan.300","cyan.800");
+  const colorValue = useColorModeValue("cyan.200","cyan.800");
   const borderColorValue = useColorModeValue("teal.400","teal.500");
   const [currentSection, setCurrentSection] = useState(false);
     return (

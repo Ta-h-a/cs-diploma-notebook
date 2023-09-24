@@ -1,5 +1,5 @@
 import {
-  Accordion,
+  Accordion, Link,
 } from '@chakra-ui/react'
 import CategoryNavItem from './CategoryNavItem';
 import {
@@ -163,21 +163,33 @@ const MobileNav = ({ onOpen, ...rest }) => {
             aria-label="open menu"
             icon={<FiMenu />}
         />
-      <Text
+      <Link 
         display={{ base: 'flex', md: 'none' }}
+        href='/'
+        _hover={
+          {
+            textDecoration: 'none'
+          }
+        }
         fontSize="xl"
         // fontFamily="montserrat"
         fontWeight="semibold"
         letterSpacing={1}
         ml={2}
         textAlign={{base : 'center',md:'left'}}
-        >
+      >
         CS Textbook
-      </Text>
+      </Link>
       </HStack>
 
-      <Text
+      <Link
+      href='/'
         display={{ base: 'none', md: 'flex' }}
+        _hover={
+          {
+            textDecoration: 'none'
+          }
+        }
         fontSize="xl"
         // fontFamily="montserrat"
         fontWeight="semibold"
@@ -185,9 +197,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
         ml={4}
         position={'absolute'}
         left={0}
-        >
+      >
         CS Textbook
-      </Text>
+      </Link>
 
 
 

@@ -1,4 +1,4 @@
-import { Card, CardBody, CardHeader, Container, Heading, Link, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
+import { Card, CardBody, CardHeader, Container, Heading, Link, Text, VStack, Wrap, WrapItem, useColorModeValue } from "@chakra-ui/react";
 import Footer from "./Footer";
 
 
@@ -11,21 +11,22 @@ function SemesterCategoryPage(
         loadComponent
     }
 ){
+  const colorValue = useColorModeValue("whiteAlpha.600", "blackAlpha.500");
     // console.log(data);
     return (
       <VStack align={'stretch'}>
-        <Container maxW={'100%'} my={3}>
+        <Container p={{base: 0,md:4}} maxW={'100%'} my={3}>
             <Heading size={'2xl'}>{title}</Heading>
         </Container>
-            <Text pl={4} my={4}>
+            <Text pl={{base: 0, md: 4}} my={4}>
                 {description}
             </Text>
             <Wrap>
                 {practical.map((sub, index)=>{
                       return (
-                      <Container maxW={'100%'} pl={0}>
+                      <Container pr={{base: 0, md: 4}}  maxW={'100%'} pl={0}>
                       <WrapItem flexGrow={{base: '1'}}>
-                          <Link p={4} w={'100%'} key={index}
+                          <Link p={0} maxW={'100%'} flexGrow={'1'} key={index}
                           onClick={loadComponent}
                           _hover={
                             {
@@ -33,13 +34,14 @@ function SemesterCategoryPage(
                             }
                           }
                           >
-                            <Card  type="subject" urlpath={sub.URL} borderWidth={2} bgColor={'transparent'} key={index}
+                            <Card  type="subject" urlpath={sub.URL} borderWidth={2} bgColor={colorValue} key={index}
                             transition='border-color 0.3s ease-in-out'
                             opacity='0.8'
+                            borderColor={'teal.800'}
                             _hover={
                               
                               {
-                                borderColor: 'teal',
+                                borderColor: 'teal.400',
                                 transition: 'border-color 0.3s ease-in-out',
                                 opacity: 1
                               }

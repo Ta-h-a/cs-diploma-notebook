@@ -3,13 +3,13 @@ import { Card, CardBody, Container, HStack, Text } from "@chakra-ui/react";
 function Footer(){
     return (
         <Container maxW={'100%'} p={0}>
-        <HStack m={0} mt={20}>
+        <HStack m={0} mt={20} mb={10}>
             <Card flexGrow={'1'} borderWidth={2} bgColor={'transparent'}
             transition='border-color 0.3s ease-in-out'
             opacity='0.8'
             _hover={
                 {
-                borderColor: 'teal',
+                borderColor: 'teal.400',
                 transition: 'border-color 0.3s ease-in-out',
                 opacity: 1
                 }

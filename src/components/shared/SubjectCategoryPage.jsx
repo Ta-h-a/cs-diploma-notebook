@@ -16,28 +16,28 @@ import {
 import Footer from "./Footer";
 
 const SubjectPage = ({ title,description, code, experiments, loadComponent }) => {
-  const colorValue = useColorModeValue("whiteAlpha.100", "blackAlpha.500");
+  const colorValue = useColorModeValue("whiteAlpha.600", "blackAlpha.500");
   return (
     <VStack align={"stretch"}>
-        <Container maxW={"100%"} my={3}>
-        <Tag>
+        <Container pl={{base: 0, md: 3}} maxW={"100%"} my={3}>
+        <Tag >
             {code}
         </Tag>
         </Container>
-      <Container maxW={"100%"} my={3}>
+      <Container pl={{base: 0, md: 3}}  maxW={"100%"} my={3}>
         <Heading size={"2xl"} >{title}</Heading>
       </Container>
-      <Text my={4} pl={4} fontSize={'1.5ch'}>{description}</Text>
+      <Text my={4} pl={{base: 0, md:4}} fontSize={'1.5ch'}>{description}</Text>
       <Wrap>
         {experiments.map((exp, index) => {
           return (
-            <Container  maxW={'100%'} pl={0}>
-              <Heading pl={4}>{exp.title}</Heading>
+            <Container pr={0}  maxW={'100%'} pl={0}>
+              <Heading mb={2} pl={{base: 0, md:4}}>{exp.title}</Heading>
               {exp.sections.map((e) => {
                 return (
                   <WrapItem flexGrow={{ base: "1" }}>
                     <Link
-                      p={4}
+                      py={4}
                       w={"100%"}
                       key={index}
                       onClick={loadComponent}
@@ -53,8 +53,9 @@ const SubjectPage = ({ title,description, code, experiments, loadComponent }) =>
                         key={index}
                         transition="border-color 0.3s ease-in-out"
                         opacity="0.8"
+                        borderColor={'teal.800'}
                         _hover={{
-                          borderColor: "teal",
+                          borderColor: "teal.400",
                           transition: "border-color 0.3s ease-in-out",
                           opacity: 1,
                         }}

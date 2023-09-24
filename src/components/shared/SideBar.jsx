@@ -27,6 +27,7 @@ import PageNavItem from './PageNavItem';
 const SidebarContent = ({ load,items, onClose, ...rest }) => {
 
   const {toggleColorMode, colorMode,setColorMode}  = useColorMode();
+  const colorValue = useColorModeValue("black","light");
   return (
     <Box
       bg={useColorModeValue('', '#1b1b1d')}
@@ -35,6 +36,7 @@ const SidebarContent = ({ load,items, onClose, ...rest }) => {
       w={{ base: 'full', md: 72}}
       pos="fixed"
       h="full"
+      color={colorValue}
       overflowY={'auto'}
       {...rest}>
       

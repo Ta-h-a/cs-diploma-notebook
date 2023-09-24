@@ -1,4 +1,5 @@
 import { Card, CardBody, CardHeader, Container, Heading, Link, Text, VStack, Wrap, WrapItem } from "@chakra-ui/react";
+import Footer from "./Footer";
 
 
 
@@ -16,7 +17,7 @@ function SemesterCategoryPage(
         <Container maxW={'100%'} my={3}>
             <Heading size={'2xl'}>{title}</Heading>
         </Container>
-            <Text my={4}>
+            <Text pl={4} my={4}>
                 {description}
             </Text>
             <Wrap>
@@ -58,6 +59,7 @@ function SemesterCategoryPage(
                       )
                   })}
             </Wrap>
+            <Footer />
       </VStack>
     )
   }

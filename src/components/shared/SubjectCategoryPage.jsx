@@ -12,6 +12,7 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
+import Footer from "./Footer";
 
 const SubjectPage = ({ title,description, code, experiments, sections, loadComponent }) => {
   return (
@@ -79,6 +80,7 @@ const SubjectPage = ({ title,description, code, experiments, sections, loadCompo
           );
         })}
       </Wrap>
+      <Footer />
     </VStack>
   );
 };

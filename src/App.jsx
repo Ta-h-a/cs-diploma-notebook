@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardHeader, Container, Heading, Image, Link, Skeleton, SkeletonText, Spinner, Text, VStack, Wrap, WrapItem, textDecoration, useColorModeValue } from '@chakra-ui/react'
+import { Box, Card, CardBody, CardHeader, Container, HStack, Heading, Image, Link, Skeleton, SkeletonCircle, SkeletonText, Spinner, Text, VStack, Wrap, WrapItem, textDecoration, useColorModeValue } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import SidebarWithHeader from './components/shared/SideBar'
 // import SemesterCategoryPage from './components/SemesterCategoryPage';
@@ -6,6 +6,7 @@ import axios from 'axios';
 import SubjectPage from './components/shared/SubjectCategoryPage';
 import SemesterCategoryPage from './components/shared/SemesterCategoryPage';
 import Page from './components/shared/Page';
+import WelcomePage from './components/shared/Welcome';
 
 function App() {
   const [data,setData] = useState();
@@ -73,7 +74,7 @@ function App() {
   if (!loadCategory.isSemester && !loadCategory.isSubject && !loadCategory.isExperiment && data){
       return (
         <SidebarWithHeader load={loadComponent} >
-          <WelcomePage />
+          <WelcomePage title={data.title} description={data.description} />
         </SidebarWithHeader>
       )
   }
@@ -105,37 +106,20 @@ function App() {
   if (loadCategory.isExperiment && data.explanation){
     return(
       <SidebarWithHeader load={loadComponent} >
-        <Page name={data.title} description={data.description} explanation={data.explanation} />
+        <Page name={data.title} description={data.description} type={data.type} explanation={data.explanation} ytLink={data.ytLink} sources={data.sources} />
       </SidebarWithHeader>
-    )
-  }
-
-  function WelcomePage(){
-    return (
-      <div>
-        <Heading as='h1' size='2xl' mt={4} mb={4}  maxW={{base:"100%",md:"heading.md"}}>
-        {data.title}
-        </Heading>
-        <Text mt={8}>
-        Hey Computer Science students!
-        </Text>
-        <Image borderRadius={10} _hover={{
-          opacity: "0.7"
-        }} mt={8} mb={8} src='https://4.bp.blogspot.com/-7SDpQHKWosE/Vnrrvtfp3LI/AAAAAAABid8/T94Jfq9Iog4/s1600/funny-cat-gifs-186-06.gif' />
-        {data.description.map((d,index)=>{
-          return (
-            <Text key={index} mt={5} mb={2}>
-              {d}
-            </Text>
-          )
-        })}
-      </div>
     )
   }
 
   return (
     <SidebarWithHeader>
-      <Spinner size={'xl'} color='red.500' />
+      {/* <Spinner size={'xl'} color='red.500' /> */}
+      <Skeleton borderRadius={5} ml={4} mr={4} mt={5} mb={4} height={16}/>
+      <Skeleton borderRadius={5} ml={4} mr={4} height={8}/>
+      <VStack m={4}>
+        <Skeleton borderRadius={5} w={'100%'} mt={4} height={32} />
+        <Skeleton borderRadius={5} w={'100%'} mt={4} height={32} />
+      </VStack>
     </SidebarWithHeader>
   )
 }

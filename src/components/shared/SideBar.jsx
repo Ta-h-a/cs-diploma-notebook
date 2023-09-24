@@ -161,6 +161,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
   const {toggleColorMode, colorMode,setColorMode}  = useColorMode();
   return (
     <Flex
+      position={'sticky'}
+      top={0}
       ml={{ base: 0, md: 0 }}
       px={{ base: 4, md: 4 }}
       height="16"
@@ -173,7 +175,11 @@ const MobileNav = ({ onOpen, ...rest }) => {
       
       <HStack w={{base: '100%',md: '0'}}>
         <IconButton
+          // _focus={{WebkitTapHighlightColor: 'transparent' }}
             display={{ base: 'flex', md: 'none' }}
+            _focus={{
+              WebkitTapHighlightColor: 'transparent'
+              }}
             onClick={onOpen}
             variant="outline"
             aria-label="open menu"

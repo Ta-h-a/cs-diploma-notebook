@@ -15,7 +15,7 @@ const NavItem = ({itemName,children, load, type, urlPath})=>{
   const colorValue = useColorModeValue("cyan.300","cyan.800");
     return (
       // <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
-        <AccordionItem border={'none'} m={2} mr={0} borderRadius={5}>
+        <AccordionItem onClick={load} border={'none'} m={2} mr={0} borderRadius={5}>
                 <AccordionButton borderRadius={10} p={0}  _focus={{'bgColor':colorValue,
                 borderColor: 'teal',
                 borderWidth: 1,

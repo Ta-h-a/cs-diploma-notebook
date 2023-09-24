@@ -1,5 +1,3 @@
-'use client'
-
 import {
   Accordion,
 } from '@chakra-ui/react'
@@ -19,11 +17,6 @@ import {
   Container
 } from '@chakra-ui/react'
 import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
   FiMenu,
   FiSun,
   FiMoon,

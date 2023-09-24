@@ -11,10 +11,12 @@ import {
   VStack,
   Wrap,
   WrapItem,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import Footer from "./Footer";
 
 const SubjectPage = ({ title,description, code, experiments, loadComponent }) => {
+  const colorValue = useColorModeValue("whiteAlpha.100", "blackAlpha.500");
   return (
     <VStack align={"stretch"}>
         <Container maxW={"100%"} my={3}>
@@ -29,7 +31,7 @@ const SubjectPage = ({ title,description, code, experiments, loadComponent }) =>
       <Wrap>
         {experiments.map((exp, index) => {
           return (
-            <Container maxW={'100%'} pl={0}>
+            <Container  maxW={'100%'} pl={0}>
               <Heading pl={4}>{exp.title}</Heading>
               {exp.sections.map((e) => {
                 return (
@@ -47,7 +49,7 @@ const SubjectPage = ({ title,description, code, experiments, loadComponent }) =>
                         type="experiment"
                         urlpath={e.URL}
                         borderWidth={2}
-                        bgColor={"transparent"}
+                        bgColor={colorValue}
                         key={index}
                         transition="border-color 0.3s ease-in-out"
                         opacity="0.8"

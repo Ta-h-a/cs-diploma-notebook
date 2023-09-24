@@ -5,7 +5,13 @@ const theme = extendTheme(
         {
             colorScheme: 'red',
         }
-    ),
+    ),{
+        fonts: {
+            body: "system-ui, sans-serif",
+            heading: "",
+            mono: "Menlo, monospace",
+        },
+    }
 ); 
 
 export default theme;

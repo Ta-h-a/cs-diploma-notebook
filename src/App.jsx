@@ -22,6 +22,7 @@ function App() {
 
   const getData = async(url)=>{
     try{
+      // const d = await axios.get(`http://localhost:3000/${url}`);
       const d = await axios.get(`https://cs-diploma-notebook-api.vercel.app/${url}`);
       setData(d.data);
     }catch(e){
@@ -32,6 +33,7 @@ function App() {
 
   const getNavBarData = async()=>{
     try{
+      // const d = await axios.get(`http://localhost:3000/practical/all`);
       const d = await axios.get("https://cs-diploma-notebook-api.vercel.app/practical/all");
       setExperiments(d.data);
     }catch (e){
@@ -121,7 +123,7 @@ function App() {
   if (experiments && loadCategory.isExperiment && data.explanation){
     return(
       <SidebarWithHeader items={experiments}  load={loadComponent} >
-        <Page name={data.title} description={data.description} type={data.type} explanation={data.explanation} ytLink={data.ytLink} sources={data.sources} />
+        <Page name={data.title} images={data.images} description={data.description} code={data.code} type={data.type} explanation={data.explanation} ytLink={data.ytLink} sources={data.sources} />
       </SidebarWithHeader>
     )
   }

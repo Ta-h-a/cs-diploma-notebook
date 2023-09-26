@@ -114,7 +114,7 @@ const SidebarContent = ({ load,items, onClose, ...rest }) => {
                   return item.title == "DSA with Python"
                 })[0].experiments.map((experiment)=>{
                   return (
-                    <CategoryNavItem itemName={experiment.title}>
+                    <CategoryNavItem urlPath={"practical/data-structures-and-algorithms-with-python"} type={"subject"} load={load}  itemName={experiment.title}>
                       {experiment.sections.map((section)=>{
                         return (
                           <PageNavItem itemName={section.tag} type={"experiment"} load={load} urlPath={section.URL} />

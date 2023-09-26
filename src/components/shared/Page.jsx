@@ -1,64 +1,8 @@
-import { AspectRatio, Box, Code, Container, Heading, Link, List, ListItem, Tag, Text } from "@chakra-ui/react";
+import { AspectRatio, Box, Code, Container, Heading, Image, Link, List, ListItem, Tag, Text } from "@chakra-ui/react";
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-const Page = ({name, description, explanation, ytLink, type, sources})=>{
-    const code = `
-    # Program 1 A [i] 
-    x = 8.0 
-    y = 4.0 
-    sum = x + y 
-    print(x+y) 
-    sub = x - y 
-    print(x - y) 
-    multi = x * y 
-    print(x * y) 
-    div = x/y 
-    print(x/y) 
-    print(abs(x)) 
-    print(x**y) 
-
-    # ---------------------------------------------
-    # String Program - Program 1 A [ii] 
-    string1 = "Hello" print("initial string: ") 
-    print(string1) 
-    string1 = "Welcome" 
-    print("Updated String: ") 
-    print(string1) 
-    text = 'welcome to mlbp' 
-    text2 = "good morning students" 
-    print("converted string") 
-    print(text.upper()) 
-    print(text2.upper()) 
-    print(text.title()) 
-    print("original string") 
-    print(text) 
-
-    # ---------------------------------------------
-    # List Program - Program 1 A [iii] 
-    list1=[1,2,3,4,"Python"] 
-    print(list1) list1.append(2) 
-    print(list1) a = list1.pop(4) 
-    print(a) print(list1[:]) 
-    print(list1[0:2]) 
-    print(list1[-1:-3]) 
-
-    # ----------------------------------------------
-    # Dictionary Program - Program 1 A [iv] 
-    dict1 = {1: 'Java Script', 2: 'xml ', 3: 'oops', 4: 'html'} 
-    print(dict1) 
-    dict1[1] = 'python' 
-    print(dict1) 
-    dict1[5] = 'Shambhavi ' 
-    print(dict1) 
-    del dict1[1] 
-    print(dict1) 
-    print(dict1.popitem()) 
-    print(dict1) 
-    print(dict1.keys()) 
-    print(dict1.values()) 
-    # ----------------------------------------------
-    `
+const Page = ({name, description, explanation, ytLink, type, sources, images, code})=>{
     return(
         <Container maxW={'100%'} fontSize={15} letterSpacing={0.4}>
         <Container maxW={'100%'} pl={0}>
@@ -86,6 +30,18 @@ const Page = ({name, description, explanation, ytLink, type, sources})=>{
                     {code}
                 </SyntaxHighlighter>
             </Box>
+            {images === undefined ? null : 
+            <Box>
+            <Heading my={14}>
+                Images
+            </Heading>
+            {images.map((url)=>{
+                return <Image  borderRadius={10} _hover={{
+            opacity: "0.7"
+          }} mt={8} mb={8} src={url} />
+            })}
+            </Box>
+            }
             <Heading my={14}>
                 Explanation
             </Heading>
@@ -108,11 +64,11 @@ const Page = ({name, description, explanation, ytLink, type, sources})=>{
             <Heading>
             Sources :
             </Heading>
-            {sources.map((r,index)=>{
+            {sources.map((r)=>{
                 return (
                     <Tag variant={'outline'} mr={2} borderRadius={6} mt={4}>
-                    <Link target="_blank" href={r} >
-                        Link {index + 1}
+                    <Link target="_blank" href={r.url} >
+                        {r.name}
                     </Link>
                     </Tag>
                 )

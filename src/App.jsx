@@ -19,12 +19,18 @@ function App() {
       isExperiment: false
     }
   );
+  const [isLocked, setIsLocked] = useState(false);
 
   const getData = async(url)=>{
     try{
       // const d = await axios.get(`http://localhost:3000/${url}`);
       const d = await axios.get(`https://cs-diploma-notebook-api.vercel.app/${url}`);
-      setData(d.data);
+      if(d.data.isLocked){
+        console.log("Website is locked");
+        setIsLocked(true);
+      }else{
+        setData(d.data);
+      }
     }catch(e){
       console.log("Gadbad hai");
       console.log(e);
@@ -125,6 +131,12 @@ function App() {
       <SidebarWithHeader items={experiments}  load={loadComponent} >
         <Page name={data.title} images={data.images} description={data.description} code={data.code} type={data.type} explanation={data.explanation} ytLink={data.ytLink} sources={data.sources} />
       </SidebarWithHeader>
+    )
+  }
+
+  if(isLocked){
+    return (
+      "Website is Locked by College Authorities"
     )
   }
 

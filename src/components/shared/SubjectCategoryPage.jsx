@@ -31,8 +31,8 @@ const SubjectPage = ({ title,description, code, experiments, loadComponent }) =>
       <Wrap>
         {experiments.map((exp, index) => {
           return (
-            <Container pr={0}  maxW={'100%'} pl={0}>
-              <Heading mb={2} pl={{base: 0, md:4}} >{exp.title}</Heading>
+            <Container pr={0}  maxW={'100%'} pl={0} my={10} bgColor={colorValue} p={5} borderRadius={10}>
+              <Heading mb={2} pl={{base: 0, md:1}} my={2} >{exp.title}</Heading>
               {exp.sections.map((e) => {
                 return (
                   <WrapItem flexGrow={{ base: "1" }}>

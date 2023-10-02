@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+      {
+        "source": "/staff",
+        "destination": "/staff"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/"
+      }
+    ]
+  }

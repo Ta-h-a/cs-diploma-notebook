@@ -20,7 +20,7 @@ function App() {
     }
   );
   const [isLocked, setIsLocked] = useState(false);
-
+ 
   const getData = async(url)=>{
     try{
       // const d = await axios.get(`http://localhost:3000/${url}`);

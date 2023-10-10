@@ -78,9 +78,21 @@ const SidebarContent = ({ load,items, onClose, ...rest }) => {
         <Accordion textColor={colorValue} mb={50} defaultIndex={[0]} allowMultiple pr={2}>
 
             <CategoryNavItem urlPath="semester/1" type={"semester"} load={load} itemName={"Semester 1"}>
-              <CategoryNavItem urlPath="practical/information-technology" type={"subject"} load={load} itemName={"IT Skills"} />
-
-              <CategoryNavItem type={"subject"} load={load} itemName={"FEEE"} />
+              <CategoryNavItem urlPath={"practical/information-technology"} load={load} type={"subject"} itemName={"IT Skills"}>
+                  {items.filter((item)=>{
+                    return item.title == "IT Skills"
+                  })[0].experiments.map((experiment)=>{
+                    return (
+                      <CategoryNavItem urlPath={"practical/information-technology"} type={"subject"} load={load}  itemName={experiment.title}>
+                        {experiment.sections.map((section)=>{
+                          return (
+                            <PageNavItem itemName={section.tag} type={"experiment"} load={load} urlPath={section.URL} />
+                          )
+                        })}
+                      </CategoryNavItem>
+                    )
+                  })}
+                </CategoryNavItem>
             </CategoryNavItem>
 
             <CategoryNavItem type={"semester"} load={load} itemName={"Semester 2"}>
@@ -99,17 +111,6 @@ const SidebarContent = ({ load,items, onClose, ...rest }) => {
 
             <CategoryNavItem urlPath={"semester/4"} load={load} type={"semester"} itemName={"Semester 4"}>
               <CategoryNavItem urlPath={"practical/data-structures-and-algorithms-with-python"} load={load} type={"subject"} itemName={"DSA with Python"}>
-                {/* {items.map((item)=>{
-                  return (
-                    <CategoryNavItem itemName={item.title}>
-                      {item.sections.map((section)=>{
-                        return (
-                          <PageNavItem itemName={section.tag} type={"experiment"} load={load} urlPath={section.URL} />
-                        )
-                      })}
-                    </CategoryNavItem>
-                  )
-                })} */}
                 {items.filter((item)=>{
                   return item.title == "DSA with Python"
                 })[0].experiments.map((experiment)=>{

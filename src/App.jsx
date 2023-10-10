@@ -129,7 +129,7 @@ function App() {
   if (experiments && loadCategory.isExperiment && data.explanation){
     return(
       <SidebarWithHeader items={experiments}  load={loadComponent} >
-        <Page name={data.title} images={data.images} description={data.description} code={data.code} type={data.type} explanation={data.explanation} ytLink={data.ytLink} sources={data.sources} />
+        <Page language={data.language} name={data.title} images={data.images} description={data.description} code={data.code} type={data.type} explanation={data.explanation} ytLink={data.ytLink} sources={data.sources} />
       </SidebarWithHeader>
     )
   }

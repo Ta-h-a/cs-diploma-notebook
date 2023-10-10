@@ -2,7 +2,7 @@ import { AspectRatio, Box, Code, Container, Heading, Image, Link, List, ListItem
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
-const Page = ({name, description, explanation, ytLink, type, sources, images, code})=>{
+const Page = ({name, description, explanation, ytLink, type, sources, images,language, code})=>{
     return(
         <Container maxW={'100%'} fontSize={15} letterSpacing={0.4}>
         <Container maxW={'100%'} pl={0}>
@@ -13,14 +13,15 @@ const Page = ({name, description, explanation, ytLink, type, sources, images, co
             <Heading mt={5} mb={10}>
                 {name}
             </Heading>
-            <Text my={5}>
+            <Text my={5} letterSpacing={0.5}>
                 {description}
             </Text>
-            <Box my={25}>
+            {code &&
+                <Box my={25}>
                 <Text bgColor={'gray.700'} color={'whiteAlpha.600'} borderTopRadius={10} p={3}>
                     Code :
                 </Text>
-                <SyntaxHighlighter language="python" style={atomOneDark} customStyle={{
+                <SyntaxHighlighter language={language} style={atomOneDark} customStyle={{
                     padding:10,
                     borderBottomLeftRadius: 10,
                     borderBottomRightRadius: 10,
@@ -30,6 +31,7 @@ const Page = ({name, description, explanation, ytLink, type, sources, images, co
                     {code}
                 </SyntaxHighlighter>
             </Box>
+            }
             {images === undefined ? null : 
             <Box>
             <Heading my={14}>

@@ -20,8 +20,10 @@ function App() {
     }
   );
   const [isLocked, setIsLocked] = useState(false);
+  const [loading, setLoading] = useState(false);
  
   const getData = async(url)=>{
+    setLoading(true);
     try{
       // const d = await axios.get(`http://localhost:3000/${url}`);
       const d = await axios.get(`https://cs-diploma-notebook-api.vercel.app/${url}`);
@@ -34,6 +36,8 @@ function App() {
     }catch(e){
       console.log("Gadbad hai");
       console.log(e);
+    }finally{
+      setLoading(false);
     }
   }
 

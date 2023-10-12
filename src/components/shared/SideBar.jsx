@@ -95,19 +95,60 @@ const SidebarContent = ({ load,items, onClose, ...rest }) => {
                 </CategoryNavItem>
             </CategoryNavItem>
 
-            <CategoryNavItem type={"semester"} load={load} itemName={"Semester 2"}>
+            {/* <CategoryNavItem type={"semester"} load={load} itemName={"Semester 2"}>
               <CategoryNavItem type={"subject"} load={load} itemName={"Statistics And Analytics"} />
               <CategoryNavItem type={"subject"} load={load} itemName={"Communication Skills"} />
               <CategoryNavItem type={"subject"} load={load} itemName={"CAD"} />
               <CategoryNavItem type={"subject"} load={load} itemName={"Multimedia And Animation."} />
+            </CategoryNavItem> */}
+
+
+            <CategoryNavItem urlPath={"semester/2"} load={load} type={"semester"} itemName={"Semester 2"}>
+              <CategoryNavItem urlPath={"practical/statistics-and-analytics"} load={load} type={"subject"} itemName={"Statistics And Analytics"}>
+                {items.filter((item)=>{
+                  return item.title == "Statistics And Analytics"
+                })[0].experiments.map((experiment)=>{
+                  return (
+                    <CategoryNavItem urlPath={"practical/statistics-and-analytics"} type={"subject"} load={load}  itemName={experiment.title}>
+                      {experiment.sections.map((section)=>{
+                        return (
+                          <PageNavItem itemName={section.tag} type={"experiment"} load={load} urlPath={section.URL} />
+                        )
+                      })}
+                    </CategoryNavItem>
+                  )
+                })}
+              </CategoryNavItem>
             </CategoryNavItem>
 
-            <CategoryNavItem type={"semester"} itemName={"Semester 3"}>
+
+            {/* <CategoryNavItem type={"semester"} itemName={"Semester 3"}>
               <CategoryNavItem type={"subject"} itemName={"Statistics And Analytics"} />
               <CategoryNavItem type={"subject"} itemName={"Communication Skills"} />
               <CategoryNavItem type={"subject"} itemName={"CAD"} />
               <CategoryNavItem type={"subject"} itemName={"Multimedia And Animation."} />
+            </CategoryNavItem> */}
+
+            <CategoryNavItem urlPath={"semester/3"} load={load} type={"semester"} itemName={"Semester 3"}>
+              <CategoryNavItem urlPath={"practical/python"} load={load} type={"subject"} itemName={"Python"}>
+                {items.filter((item)=>{
+                  return item.title == "Python"
+                })[0].experiments.map((experiment)=>{
+                  return (
+                    <CategoryNavItem urlPath={"practical/python"} type={"subject"} load={load}  itemName={experiment.title}>
+                      {experiment.sections.map((section)=>{
+                        return (
+                          <PageNavItem itemName={section.tag} type={"experiment"} load={load} urlPath={section.URL} />
+                        )
+                      })}
+                    </CategoryNavItem>
+                  )
+                })}
+              </CategoryNavItem>
             </CategoryNavItem>
+
+
+
 
             <CategoryNavItem urlPath={"semester/4"} load={load} type={"semester"} itemName={"Semester 4"}>
               <CategoryNavItem urlPath={"practical/data-structures-and-algorithms-with-python"} load={load} type={"subject"} itemName={"DSA with Python"}>

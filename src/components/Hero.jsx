@@ -9,13 +9,21 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  useColorMode,
+  HStack,
+  IconButton,
 } from '@chakra-ui/react'
+import { FiMoon, FiSun } from 'react-icons/fi';
 import { Link, redirect } from 'react-router-dom'
 
 export default function Hero() {
+  const {toggleColorMode, colorMode,setColorMode}  = useColorMode();
   return (
     <>
-      <Container maxW={'3xl'}>
+      <HStack spacing={{ base: '0', md: '6' }}>
+        <IconButton size="lg" variant="ghost" aria-label='open menu' icon={ colorMode == "dark" ? <FiSun /> : <FiMoon /> } onClick={toggleColorMode} />
+      </HStack>
+      <Container maxW={'3xl'} >
         <Stack
           as={Box}
           textAlign={'center'}

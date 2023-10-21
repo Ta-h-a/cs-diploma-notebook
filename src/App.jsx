@@ -25,8 +25,8 @@ function App() {
   const getData = async(url)=>{
     setLoading(true);
     try{
-      // const d = await axios.get(`http://localhost:3000/${url}`);
-      const d = await axios.get(`https://cs-diploma-notebook-api.vercel.app/${url}`);
+      const d = await axios.get(`http://localhost:3000/${url}`);
+      // const d = await axios.get(`https://cs-diploma-notebook-api.vercel.app/${url}`);
       if(d.data.isLocked){
         console.log("Website is locked");
         setIsLocked(true);
@@ -43,8 +43,8 @@ function App() {
 
   const getNavBarData = async()=>{
     try{
-      // const d = await axios.get(`http://localhost:3000/practical/all`);
-      const d = await axios.get("https://cs-diploma-notebook-api.vercel.app/practical/all");
+      const d = await axios.get(`http://localhost:3000/practical/all`);
+      // const d = await axios.get("https://cs-diploma-notebook-api.vercel.app/practical/all");
       setExperiments(d.data);
     }catch (e){
       setExperiments([]);

@@ -1,5 +1,5 @@
 import { Card, CardBody, CardHeader, Container, Heading, Link, Text, VStack, Wrap, WrapItem, useColorModeValue } from "@chakra-ui/react";
-import Footer from "./Footer";
+import Footer from "./NextAndPrevious";
 
 
 
@@ -51,7 +51,7 @@ function SemesterCategoryPage(
                                 </CardHeader>
                                 <CardBody type="subject" urlpath={sub.URL}>
                                     <Text type="subject" urlpath={sub.URL}>
-                                    {sub.name}
+                                    {sub.description}
                                     </Text>
                                 </CardBody>
                             </Card>

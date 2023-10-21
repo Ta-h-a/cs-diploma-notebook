@@ -13,7 +13,7 @@ import {
   WrapItem,
   useColorModeValue,
 } from "@chakra-ui/react";
-import Footer from "./Footer";
+import Footer from "./NextAndPrevious";
 
 const SubjectPage = ({ title,description, code, experiments, loadComponent }) => {
   const colorValue = useColorModeValue("whiteAlpha.600", "blackAlpha.500");

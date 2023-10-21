@@ -22,6 +22,8 @@ import {
   FiMoon,
 } from 'react-icons/fi'
 
+import FooterBar from './FooterBar'
+
 import PageNavItem from './PageNavItem';
 
 const SidebarContent = ({ load,items, onClose, ...rest }) => {
@@ -130,9 +132,9 @@ const SidebarContent = ({ load,items, onClose, ...rest }) => {
             </CategoryNavItem> */}
 
             <CategoryNavItem urlPath={"semester/3"} load={load} type={"semester"} itemName={"Semester 3"}>
-              <CategoryNavItem urlPath={"practical/python"} load={load} type={"subject"} itemName={"Python"}>
+              <CategoryNavItem urlPath={"practical/python-programming"} load={load} type={"subject"} itemName={"Python Programming"}>
                 {items.filter((item)=>{
-                  return item.title == "Python"
+                  return item.title == "Python Programming"
                 })[0].experiments.map((experiment)=>{
                   return (
                     <CategoryNavItem urlPath={"practical/python"} type={"subject"} load={load}  itemName={experiment.title}>
@@ -258,7 +260,7 @@ const SidebarWithHeader = ({children,items, load}) => {
 
 
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', '#161617')}>
+    <Box minH="100vh" bg={useColorModeValue('gray.100', '#161617')} >
       <MobileNav onOpen={onOpen} />
       <SidebarContent items={items} load={load} onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
       <Drawer
@@ -272,10 +274,10 @@ const SidebarWithHeader = ({children,items, load}) => {
           <SidebarContent items={items} load={load} onClose={onClose} />
         </DrawerContent>
       </Drawer>
-      <Box ml={{ base: 0, md: 72 }} pt={4} >
+      <Box ml={{ base: 0, md: 72 }} pt={4}>
         {/* Content */}
-        <HStack justify={'stretch'} spacing={0} textAlign={"left"}>
-          <Container maxWidth={{"base":"100%","lg":'75%'}} >
+        <HStack justify={'stretch'} spacing={0} textAlign={"left"} mb={10}>
+          <Container maxWidth={{"base":"100%","lg":'75%'}}>
             <VStack textAlign={"left"} alignItems={'flex-start'}>
             <Container maxW={'container.xl'} p={0}>
             {children}
@@ -289,9 +291,8 @@ const SidebarWithHeader = ({children,items, load}) => {
           {/* {children} */}
           </Container>
         </HStack>
+      <FooterBar />
       </Box>
-      {/* <FooterBar /> */}
-
     </Box>
     
   )

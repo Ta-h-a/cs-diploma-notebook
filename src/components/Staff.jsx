@@ -44,8 +44,8 @@ export default function Staff(){
   const [logData, setLogData] = useState({});
 
   async function makeRequest(values) {
-    const data = await axios.post("http://localhost:3000/staff",values)
-    // const data = await axios.post("https://cs-diploma-notebook-api.vercel.app/staff",values)
+    // const data = await axios.post("http://localhost:3000/staff",values)
+    const data = await axios.post("https://cs-diploma-notebook-api.vercel.app/staff",values)
     return data;
   }
 
@@ -57,8 +57,8 @@ export default function Staff(){
         bgColor={logData.currentState ? "green.400" : "red.400"}
         onClick={
           async ()=>{
-            const d = await axios.put("http://localhost:3000/staff",{state: logData.currentState})
-            // const d = await axios.put("https://cs-diploma-notebook-api.vercel.app/staff",{state: logData.currentState})
+            // const d = await axios.put("http://localhost:3000/staff",{state: logData.currentState})
+            const d = await axios.put("https://cs-diploma-notebook-api.vercel.app/staff",{state: logData.currentState})
             setLogData(
               {
                 ...logData,

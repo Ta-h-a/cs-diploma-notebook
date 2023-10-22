@@ -52,7 +52,7 @@ export default function FooterBar() {
         align={{ base: "center", md: "center" }}
         pt={{base: "8", md: "3"}}
       >
-        <Text>Made with ❤️ by {<Link href={"https://taha-sindoli.vercel.app/"} isExternal>Taha Sindoli</Link>} © {year.getFullYear()}</Text>
+        <Text>Made with ❤️ by {<Link textDecoration={"underline"} href={"https://taha-sindoli.vercel.app/"} isExternal>Taha Sindoli</Link>} © {year.getFullYear()}</Text>
         <Stack direction={"row"} spacing={6} mt={{ base: "0.7rem", md: "3"}}>
           <SocialButton
             label={"Twitter"}

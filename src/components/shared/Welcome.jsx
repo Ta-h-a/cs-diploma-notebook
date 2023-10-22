@@ -1,30 +1,70 @@
-import { Heading, Image, Text } from "@chakra-ui/react";
+import { AspectRatio, Divider, Heading, Image, Text } from "@chakra-ui/react";
 
-function WelcomePage(
-    {
-        title, description
-    }
-){
-    return (
-        <div>
-          <Heading as='h1' size='2xl' mt={4} mb={4}  maxW={{base:"100%",md:"heading.md"}}>
-          {title}
-          </Heading>
-          <Text mt={8}>
-          Hey Computer Science students!
+function WelcomePage({ title, description, link }) {
+  return (
+    <div>
+      <Heading
+        as="h1"
+        size="2xl"
+        mt={4}
+        mb={4}
+        maxW={{ base: "100%", md: "heading.md" }}
+      >
+        {title} 🐨
+      </Heading>
+      <Text mt={8}>Hey Computer Science students!</Text>
+      <Image
+        borderRadius={10}
+        _hover={{
+          opacity: "0.7",
+        }}
+        mt={8}
+        mb={8}
+        src="https://4.bp.blogspot.com/-7SDpQHKWosE/Vnrrvtfp3LI/AAAAAAABid8/T94Jfq9Iog4/s1600/funny-cat-gifs-186-06.gif"
+      />
+      {description.map((d, index) => {
+        return (
+          <Text key={index} mt={5} mb={6}>
+            {d}
           </Text>
-          <Image borderRadius={10} _hover={{
-            opacity: "0.7"
-          }} mt={8} mb={8} src='https://4.bp.blogspot.com/-7SDpQHKWosE/Vnrrvtfp3LI/AAAAAAABid8/T94Jfq9Iog4/s1600/funny-cat-gifs-186-06.gif' />
-          {description.map((d,index)=>{
-            return (
-              <Text key={index} mt={5} mb={2}>
-                {d}
-              </Text>
-            )
-          })}
-        </div>
-      )
-    }
+        );
+      })}
+      <Divider />
+      <Heading mt={7} size={"xl"}>
+        Overview
+      </Heading>
+      <Text mt={7} mb={6}>
+        Checkout this vide to get an overview of this website.
+      </Text>
+      <AspectRatio my={35} ratio={2} zIndex={0}>
+        <iframe title={"HEyy"} src={link} style={{borderRadius: '10px'}} allowFullScreen />
+      </AspectRatio>
+      <Divider />
+      <Heading mt={7} size={"xl"}>
+        Structure & Navigation
+      </Heading>
+      <Text mt={7} mb={6}>
+        Here you will find the practical experiments of some of the semesters
+        for Computer Science Diploma students studying in Karnataka. They are
+        organized by semesters and subjects. Use the menu to the left to choose
+        a subject by semester.
+        <br />
+        <br />
+        These are listed in approximately the same order that they appear in the
+        manual of your college. If you have trouble finding content an a
+        specific topic, you can contact the developer
+        <br /> <br /> - the socials are mentioned in the footer.
+      </Text>
+      <Divider />
+      <Heading mt={7} size={"xl"}>
+        What is it for ?
+      </Heading>
+      <Text mt={7}>
+        These notes are intended to be used as a reference tool to complement
+        some of the material covered in the C20 syllabus
+      </Text>
+    </div>
+  );
+}
 
 export default WelcomePage;

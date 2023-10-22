@@ -21,7 +21,6 @@ function App() {
   );
   const [isLocked, setIsLocked] = useState(false);
   const [loading, setLoading] = useState(false);
- 
   const getData = async(url)=>{
     setLoading(true);
     try{
@@ -101,7 +100,7 @@ function App() {
   if (experiments && !loadCategory.isSemester && !loadCategory.isSubject && !loadCategory.isExperiment && data){
       return (
         <SidebarWithHeader items={experiments} load={loadComponent} >
-          <WelcomePage title={data.title} description={data.description} />
+          <WelcomePage title={data.title} link={data.link} description={data.description} />
         </SidebarWithHeader>
       )
   }
@@ -150,7 +149,7 @@ function App() {
         {/* <Spinner size={'xl'} color='red.500' /> */}
         <Skeleton borderRadius={5} ml={4} mr={4} mt={5} mb={4} height={16}/>
         <Skeleton borderRadius={5} ml={4} mr={4} height={8}/>
-        <VStack m={4}>
+        <VStack m={4} mb={40}>
           <Skeleton borderRadius={5} w={'100%'} mt={4} height={32} />
           <Skeleton borderRadius={5} w={'100%'} mt={4} height={32} />
         </VStack>

@@ -1,4 +1,4 @@
-import { Box, Card, CardBody, CardHeader, Container, HStack, Heading, Image, Link, Skeleton, SkeletonCircle, SkeletonText, Spinner, Text, VStack, Wrap, WrapItem, textDecoration, useColorModeValue } from '@chakra-ui/react'
+import { Skeleton, VStack, useColorMode} from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import SidebarWithHeader from './components/shared/SideBar'
 // import SemesterCategoryPage from './components/SemesterCategoryPage';
@@ -7,6 +7,7 @@ import SubjectPage from './components/shared/SubjectCategoryPage';
 import SemesterCategoryPage from './components/shared/SemesterCategoryPage';
 import Page from './components/shared/Page';
 import WelcomePage from './components/shared/Welcome';
+import LoadingBar from 'react-top-loading-bar'
 
 function App() {
   const [data,setData] = useState();
@@ -20,9 +21,13 @@ function App() {
     }
   );
   const [isLocked, setIsLocked] = useState(false);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const {toggleColorMode, colorMode}  = useColorMode();
+
   const getData = async(url)=>{
-    setLoading(true);
+    // setLoading(true);
+    setProgress(40);
     try{
       // const d = await axios.get(`http://localhost:3000/${url}`);
       const d = await axios.get(`https://cs-diploma-notebook-api.vercel.app/${url}`);
@@ -33,10 +38,11 @@ function App() {
         setData(d.data);
       }
     }catch(e){
-      console.log("Gadbad hai");
+      console.log("Something went wrong !");
       console.log(e);
     }finally{
-      setLoading(false);
+      // setLoading(false);
+      setProgress(100);
     }
   }
 
@@ -100,6 +106,7 @@ function App() {
   if (experiments && !loadCategory.isSemester && !loadCategory.isSubject && !loadCategory.isExperiment && data){
       return (
         <SidebarWithHeader items={experiments} load={loadComponent} >
+          <LoadingBar color={colorMode == "dark" ? "#47A992" : "red"} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
           <WelcomePage title={data.title} link={data.link} description={data.description} />
         </SidebarWithHeader>
       )
@@ -110,6 +117,7 @@ function App() {
     return (
         <SidebarWithHeader items={experiments} load={loadComponent} >
           {/* <SemesterCategoryPage /> */}
+          <LoadingBar color={colorMode == "dark" ? "#47A992" : "red"} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
           <SemesterCategoryPage 
             title={data.title}
             description={data.description}
@@ -121,9 +129,9 @@ function App() {
   }
 
   if(experiments && loadCategory.isSubject && data.experiments){
-    console.log(data);
     return (
       <SidebarWithHeader items={experiments}  load={loadComponent} >
+        <LoadingBar color={colorMode == "dark" ? "#47A992" : "red"} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
         <SubjectPage title={data.title} loadComponent={loadComponent} description={data.description} code={data.code} experiments={data.experiments}  />
       </SidebarWithHeader>
     )
@@ -132,6 +140,7 @@ function App() {
   if (experiments && loadCategory.isExperiment && data.explanation){
     return(
       <SidebarWithHeader items={experiments}  load={loadComponent} >
+        <LoadingBar color={colorMode == "dark" ? "#47A992" : "red"} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
         <Page language={data.language} name={data.title} images={data.images} description={data.description} code={data.code} type={data.type} explanation={data.explanation} ytLink={data.ytLink} sources={data.sources} />
       </SidebarWithHeader>
     )

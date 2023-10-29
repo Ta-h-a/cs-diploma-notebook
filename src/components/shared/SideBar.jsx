@@ -300,7 +300,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
         />
         <Link
           display={{ base: "flex", md: "none" }}
-          href="/"
+          href="/docs"
           _hover={{
             textDecoration: "none",
           }}
@@ -316,7 +316,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       </HStack>
 
       <Link
-        href="/"
+        href="/docs"
         display={{ base: "none", md: "flex" }}
         _hover={{
           textDecoration: "none",

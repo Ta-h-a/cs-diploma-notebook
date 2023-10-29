@@ -19,6 +19,7 @@ import { FiMenu, FiSun, FiMoon } from "react-icons/fi";
 import FooterBar from "./FooterBar";
 
 import PageNavItem from "./PageNavItem";
+import { Analytics } from '@vercel/analytics/react';
 
 const SidebarContent = ({ load, items, onClose, ...rest }) => {
   const { toggleColorMode, colorMode, setColorMode } = useColorMode();
@@ -371,6 +372,7 @@ const SidebarWithHeader = ({ children, items, load }) => {
       </Drawer>
       <Box ml={{ base: 0, md: 72 }} pt={4}>
         {/* Content */}
+        <Analytics />
         <HStack justify={"stretch"} spacing={0} textAlign={"left"} mb={10}>
           <Container maxWidth={{ base: "100%", lg: "75%" }}>
             <VStack textAlign={"left"} alignItems={"flex-start"}>

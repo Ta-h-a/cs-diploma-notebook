@@ -23,7 +23,6 @@ function App() {
   const [isLocked, setIsLocked] = useState(false);
   // const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const {toggleColorMode, colorMode}  = useColorMode();
 
   const getData = async(url)=>{
     // setLoading(true);
@@ -106,7 +105,7 @@ function App() {
   if (experiments && !loadCategory.isSemester && !loadCategory.isSubject && !loadCategory.isExperiment && data){
       return (
         <SidebarWithHeader items={experiments} load={loadComponent} >
-          <LoadingBar color={colorMode == "dark" ? "#47A992" : "red"} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
+          <LoadingBar color="#FE0000" height={2.5} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
           <WelcomePage title={data.title} link={data.link} description={data.description} />
         </SidebarWithHeader>
       )
@@ -117,7 +116,7 @@ function App() {
     return (
         <SidebarWithHeader items={experiments} load={loadComponent} >
           {/* <SemesterCategoryPage /> */}
-          <LoadingBar color={colorMode == "dark" ? "#47A992" : "red"} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
+          <LoadingBar color="#FE0000" height={2.5} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
           <SemesterCategoryPage 
             title={data.title}
             description={data.description}
@@ -131,7 +130,7 @@ function App() {
   if(experiments && loadCategory.isSubject && data.experiments){
     return (
       <SidebarWithHeader items={experiments}  load={loadComponent} >
-        <LoadingBar color={colorMode == "dark" ? "#47A992" : "red"} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
+        <LoadingBar color="#FE0000" height={2.5} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
         <SubjectPage title={data.title} loadComponent={loadComponent} description={data.description} code={data.code} experiments={data.experiments}  />
       </SidebarWithHeader>
     )
@@ -140,7 +139,7 @@ function App() {
   if (experiments && loadCategory.isExperiment && data.explanation){
     return(
       <SidebarWithHeader items={experiments}  load={loadComponent} >
-        <LoadingBar color={colorMode == "dark" ? "#47A992" : "red"} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
+        <LoadingBar color="#FE0000" height={2.5} shadow={true} progress={progress} onLoaderFinished={() => setProgress(0)} />
         <Page language={data.language} name={data.title} images={data.images} description={data.description} code={data.code} type={data.type} explanation={data.explanation} ytLink={data.ytLink} sources={data.sources} />
       </SidebarWithHeader>
     )

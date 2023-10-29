@@ -60,7 +60,7 @@ const Page = ({
                     borderBottomLeftRadius: 10,
                     borderBottomRightRadius: 10,
                   }}
-                  wrapLongLines={true}
+                  wrapLongLines={true} 
                 >
                   {codeSnippet.data}
                 </SyntaxHighlighter>

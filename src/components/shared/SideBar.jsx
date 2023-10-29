@@ -14,7 +14,7 @@ import {
   useColorMode,
   Container,
 } from "@chakra-ui/react";
-import { FiMenu, FiSun, FiMoon } from "react-icons/fi";
+import { FiMenu, FiSun, FiMoon, FiX } from "react-icons/fi";
 
 import FooterBar from "./FooterBar";
 
@@ -58,15 +58,24 @@ const SidebarContent = ({ load, items, onClose, ...rest }) => {
         p={2}
         justifyContent={"space-between"}
       >
+      <IconButton
+          size="sm"
+          variant="outline"
+          aria-label="close menu"
+          display={{ base: "flex", md: "none" }}
+          icon={<FiX />}
+          onClick={onClose}
+          ml={1}
+        />
         <Text
           display={{ base: "flex", md: "none" }}
           fontSize="xl"
           // fontFamily="montserrat"
           fontWeight="semibold"
           letterSpacing={1}
-          ml={2}
+          // ml={2}
         >
-          Computer Science
+          Menu
         </Text>
         <IconButton
           size="md"

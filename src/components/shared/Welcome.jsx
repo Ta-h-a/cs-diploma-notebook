@@ -20,7 +20,8 @@ function WelcomePage({ title, description, link }) {
         }}
         mt={8}
         mb={8}
-        src="https://4.bp.blogspot.com/-7SDpQHKWosE/Vnrrvtfp3LI/AAAAAAABid8/T94Jfq9Iog4/s1600/funny-cat-gifs-186-06.gif"
+        // src="https://4.bp.blogspot.com/-7SDpQHKWosE/Vnrrvtfp3LI/AAAAAAABid8/T94Jfq9Iog4/s1600/funny-cat-gifs-186-06.gif"
+        src="https://i.pinimg.com/originals/38/d3/0e/38d30ecfe41c21551c043443d330d637.gif"
       />
       {description.map((d, index) => {
         return (

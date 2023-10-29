@@ -15,13 +15,12 @@ function WelcomePage({ title, description, link }) {
       <Text mt={8}>Hey Computer Science students!</Text>
       <Image
         borderRadius={10}
-        _hover={{
-          opacity: "0.7",
-        }}
-        mt={8}
-        mb={8}
+        w={400}
+        h={400}
+        ml={{base: 0, md: 5}}
         // src="https://4.bp.blogspot.com/-7SDpQHKWosE/Vnrrvtfp3LI/AAAAAAABid8/T94Jfq9Iog4/s1600/funny-cat-gifs-186-06.gif"
-        src="https://i.pinimg.com/originals/38/d3/0e/38d30ecfe41c21551c043443d330d637.gif"
+        // src="https://i.pinimg.com/originals/38/d3/0e/38d30ecfe41c21551c043443d330d637.gif"
+        src="/undraw_programming_re_kg9v.svg"
       />
       {description.map((d, index) => {
         return (

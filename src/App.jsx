@@ -7,7 +7,7 @@ import SubjectPage from './components/shared/SubjectCategoryPage';
 import SemesterCategoryPage from './components/shared/SemesterCategoryPage';
 import Page from './components/shared/Page';
 import WelcomePage from './components/shared/Welcome';
-import LoadingBar from 'react-top-loading-bar'
+import LoadingBar from 'react-top-loading-bar';
 
 function App() {
   const [data,setData] = useState();
@@ -23,13 +23,18 @@ function App() {
   const [isLocked, setIsLocked] = useState(false);
   // const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  let corsUrl;
+  if(import.meta.env.PROD){
+    corsUrl = import.meta.env.VITE_API_URL
+  }else{
+    corsUrl = import.meta.env.VITE_DOCKER_BACKEND_URL
+  }
 
   const getData = async(url)=>{
     // setLoading(true);
     setProgress(40);
     try{
-      // const d = await axios.get(`http://localhost:3000/${url}`);
-      const d = await axios.get(`https://cs-diploma-notebook-api.vercel.app/${url}`);
+      const d = await axios.get(corsUrl + "/"+ url);
       if(d.data.isLocked){
         console.log("Website is locked");
         setIsLocked(true);
@@ -47,8 +52,7 @@ function App() {
 
   const getNavBarData = async()=>{
     try{
-      // const d = await axios.get(`http://localhost:3000/practical/all`);
-      const d = await axios.get("https://cs-diploma-notebook-api.vercel.app/practical/all");
+      const d = await axios.get(corsUrl + `/practical/all`);
       setExperiments(d.data);
     }catch (e){
       setExperiments([]);

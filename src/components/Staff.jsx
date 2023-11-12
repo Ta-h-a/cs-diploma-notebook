@@ -42,10 +42,15 @@ const MyTextInput = ({ label, ...props }) => {
 export default function Staff(){
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [logData, setLogData] = useState({});
+  let corsUrl;
+  if(import.meta.env.PROD){
+    corsUrl = import.meta.env.VITE_API_URL
+  }else{
+    corsUrl = import.meta.env.VITE_DOCKER_BACKEND_URL
+  }
 
   async function makeRequest(values) {
-    // const data = await axios.post("http://localhost:3000/staff",values)
-    const data = await axios.post("https://cs-diploma-notebook-api.vercel.app/staff",values)
+    const data = await axios.post(corsUrl + "/staff",values)
     return data;
   }
 
@@ -57,8 +62,7 @@ export default function Staff(){
         bgColor={logData.currentState ? "green.400" : "red.400"}
         onClick={
           async ()=>{
-            // const d = await axios.put("http://localhost:3000/staff",{state: logData.currentState})
-            const d = await axios.put("https://cs-diploma-notebook-api.vercel.app/staff",{state: logData.currentState})
+            const d = await axios.put(corsUrl + "/staff",{state: logData.currentState})
             setLogData(
               {
                 ...logData,

@@ -1,0 +1,15 @@
+services:
+  csd_frontend:
+    depends_on:
+      - csd_backend
+    image: csd-frontend
+    build: ./
+    container_name: csd_frontend
+    ports:
+      - "5173:5173"
+      
+  csd_backend:
+    image: csd-backend
+    container_name: csd_backend
+    ports:
+      - "3000:3000"

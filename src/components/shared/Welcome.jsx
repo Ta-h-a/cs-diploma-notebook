@@ -1,4 +1,15 @@
-import { AspectRatio, Divider, Heading, Image, Text } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  AspectRatio,
+  Divider,
+  Heading,
+  Image,
+  Text,
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 function WelcomePage({ title, description, link }) {
   return (
@@ -13,11 +24,17 @@ function WelcomePage({ title, description, link }) {
         {title} 🐨
       </Heading>
       <Text mt={8}>Hey Computer Science students!</Text>
+      <br />
+      <Alert status="info">
+        <AlertIcon />
+        <AlertTitle>A new version is out 🥳 : <Link to={"https://csd-textbook.vercel.app"} style={{textDecoration: "underline"}}>Revamped CSD</Link></AlertTitle> 
+      </Alert>
+
       <Image
         borderRadius={10}
         w={400}
         h={400}
-        ml={{base: 0, md: 5}}
+        ml={{ base: 0, md: 5 }}
         // src="https://4.bp.blogspot.com/-7SDpQHKWosE/Vnrrvtfp3LI/AAAAAAABid8/T94Jfq9Iog4/s1600/funny-cat-gifs-186-06.gif"
         // src="https://i.pinimg.com/originals/38/d3/0e/38d30ecfe41c21551c043443d330d637.gif"
         src="/undraw_programming_re_kg9v.svg"
@@ -37,7 +54,12 @@ function WelcomePage({ title, description, link }) {
         Checkout this vide to get an overview of this website.
       </Text>
       <AspectRatio my={35} ratio={2} zIndex={0}>
-        <iframe title={"HEyy"} src={link} style={{borderRadius: '10px'}} allowFullScreen />
+        <iframe
+          title={"HEyy"}
+          src={link}
+          style={{ borderRadius: "10px" }}
+          allowFullScreen
+        />
       </AspectRatio>
       <Divider />
       <Heading mt={7} size={"xl"}>

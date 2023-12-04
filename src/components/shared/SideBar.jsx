@@ -229,6 +229,38 @@ const SidebarContent = ({ load, items, onClose, ...rest }) => {
                   );
                 })}
             </CategoryNavItem>
+            {/* <CategoryNavItem
+              urlPath={"practical/dbms"}
+              load={load}
+              type={"subject"}
+              itemName={"Database Management System"}
+            >
+              {items
+                .filter((item) => {
+                  return item.title == "Database Management System";
+                })[0]
+                .experiments.map((experiment) => {
+                  return (
+                    <CategoryNavItem
+                      urlPath={"practical/dbms"}
+                      type={"subject"}
+                      load={load}
+                      itemName={experiment.title}
+                    >
+                      {experiment.sections.map((section) => {
+                        return (
+                          <PageNavItem
+                            itemName={section.tag}
+                            type={"experiment"}
+                            load={load}
+                            urlPath={section.URL}
+                          />
+                        );
+                      })}
+                    </CategoryNavItem>
+                  );
+                })}
+            </CategoryNavItem> */}
           </CategoryNavItem>
 
           <CategoryNavItem
